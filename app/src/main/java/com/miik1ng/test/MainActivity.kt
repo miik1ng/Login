@@ -42,10 +42,12 @@ class MainActivity : ComponentActivity() {
                         .isShowFCheckBox(true)
                         .setFChecked(true)
                         .setSChecked(false)
-                        .addCallBack(object : ICallback<MutableMap<String, String?>> {
-                            override fun back(t: MutableMap<String, String?>) {
+                        .addOnButtonClickListener(object :
+                            LoginConfig.OnButtonClickListener<MutableMap<String, String?>> {
+                            override fun onClick(t: MutableMap<String, String?>): Boolean {
                                 val s: String = "${t["fValue"]},${t["sValue"]}"
                                 Toast.makeText(this@MainActivity, s, Toast.LENGTH_SHORT).show()
+                                return true
                             }
                         })
                         .build()

@@ -44,7 +44,10 @@ class LoginActivity : ComponentActivity() {
                 sChecked = config.sChecked,
                 buttonText = config.buttonText,
                 onButtonClick = {
-                    Messenger.getDefault().send(it, LoginConfig.MESSENGER_LOGINCONFIG_ENENT)
+                    val list = mutableListOf<Any>()
+                    list.add(it)
+                    list.add(this@LoginActivity)
+                    Messenger.getDefault().send(list, LoginConfig.MESSENGER_LOGINCONFIG_ENENT)
                 }
             )
         }

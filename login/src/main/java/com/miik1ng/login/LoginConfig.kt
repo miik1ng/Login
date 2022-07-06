@@ -11,7 +11,7 @@ import com.miik1ng.login.messenger.Messenger
 class LoginConfig(builder: Builder) {
     private val context: Context
     private val config: Config
-    private val iCallback: ICallback<MutableMap<String, String?>>?
+    private val listener: OnButtonClickListener<MutableMap<String, String?>>?
 
     init {
         this.context = builder.context
@@ -33,12 +33,20 @@ class LoginConfig(builder: Builder) {
         config.fChecked = builder.fChecked
         config.sChecked = builder.sChecked
         config.buttonText = builder.btnText
-        this.iCallback = builder.iCallback
+        this.listener = builder.listener
     }
 
-    private val iCallbackMessenger: ICallback<MutableMap<String, String?>> = object : ICallback<MutableMap<String, String?>> {
-        override fun back(t: MutableMap<String, String?>) {
-            iCallback?.back(t)
+    @Suppress("UNCHECKED_CAST")
+    private val iCallbackMessenger: ICallback<MutableList<Any>> = object : ICallback<MutableList<Any>> {
+        override fun back(t: MutableList<Any>) {
+            val map = t[0] as MutableMap<String, String?>
+            if (listener != null) {
+                val b: Boolean = listener.onClick(map)
+                if (b) {
+                    val activity: LoginActivity = t[1] as LoginActivity
+                    activity.finish()
+                }
+            }
         }
     }
 
@@ -47,7 +55,7 @@ class LoginConfig(builder: Builder) {
             .register(
                 context,
                 MESSENGER_LOGINCONFIG_ENENT,
-                mutableMapOf<String, String?>().javaClass,
+                mutableListOf<Any>().javaClass,
                 iCallbackMessenger
             )
         val intent = Intent(context, LoginActivity().javaClass)
@@ -75,7 +83,7 @@ class LoginConfig(builder: Builder) {
         var fChecked: Boolean? = null
         var sChecked: Boolean? = null
         var btnText: String? = null
-        var iCallback: ICallback<MutableMap<String, String?>>? = null
+        var listener: OnButtonClickListener<MutableMap<String, String?>>? = null
 
         fun setThemeColor(@ColorInt themeColor: Long): Builder {
             this.themeColor = themeColor
@@ -162,14 +170,18 @@ class LoginConfig(builder: Builder) {
             return this
         }
 
-        fun addCallBack(iCallback: ICallback<MutableMap<String, String?>>): Builder {
-            this.iCallback = iCallback
+        fun addOnButtonClickListener(listener: OnButtonClickListener<MutableMap<String, String?>>): Builder {
+            this.listener = listener
             return this
         }
 
         fun build(): LoginConfig {
             return LoginConfig(this)
         }
+    }
+
+    interface OnButtonClickListener<T> {
+        fun onClick(t: T): Boolean
     }
 
     companion object {
