@@ -27,36 +27,36 @@ class MainActivity : ComponentActivity() {
         setContent {
             MainPage(
                 onClick = {
-                    LoginConfig.Builder(this@MainActivity)
-                        .setThemeColor(0xFF4393EF)
-                        .setBackgroundColor(0xFF4393EF)
-                        .setBackgroundDrawableRes(R.drawable.background)
-                        .setLogoDrawableRes(R.drawable.logo)
-                        .setFLeadIcon(R.drawable.username)
-                        .setSLeadIcon(R.drawable.password)
-                        .setFValue("mmm")
-                        .setSValue("1234")
-                        .setFPlaceholder("请输入用户名")
-                        .setSPlaceholder("请输入密码")
-                        .setButtonText("登录")
-                        .isShowSCheckBox(true)
-                        .isShowFCheckBox(true)
-                        .setFChecked(true)
-                        .setSChecked(false)
-                        .addOnButtonClickListener(object :
-                            LoginConfig.OnButtonClickListener<MutableMap<String, String?>> {
-                            override fun onClick(
-                                t: MutableMap<String, String?>,
-                                activity: Activity
-                            ): Boolean {
-                                val s: String = "${t["fValue"]},${t["sValue"]}"
-                                Toast.makeText(this@MainActivity, s, Toast.LENGTH_SHORT).show()
-                                activity.finish()
-                                return true
-                            }
-                        })
-                        .build()
-                        .start()
+//                    LoginConfig.Builder(this@MainActivity)
+//                        .setThemeColor(0xFF4393EF)
+//                        .setBackgroundColor(0xFF4393EF)
+//                        .setBackgroundDrawableRes(R.drawable.background)
+//                        .setLogoDrawableRes(R.drawable.logo)
+//                        .setFLeadIcon(R.drawable.username)
+//                        .setSLeadIcon(R.drawable.password)
+//                        .setFValue("mmm")
+//                        .setSValue("1234")
+//                        .setFPlaceholder("请输入用户名")
+//                        .setSPlaceholder("请输入密码")
+//                        .setButtonText("登录")
+//                        .isShowSCheckBox(true)
+//                        .isShowFCheckBox(true)
+//                        .setFChecked(true)
+//                        .setSChecked(false)
+//                        .addOnButtonClickListener(object :
+//                            LoginConfig.OnButtonClickListener<MutableMap<String, String?>> {
+//                            override fun onClick(
+//                                t: MutableMap<String, String?>,
+//                                activity: Activity
+//                            ): Boolean {
+//                                val s: String = "${t["fValue"]},${t["sValue"]}"
+//                                Toast.makeText(this@MainActivity, s, Toast.LENGTH_SHORT).show()
+//                                activity.finish()
+//                                return true
+//                            }
+//                        })
+//                        .build()
+//                        .start()
                 }
             )
         }
