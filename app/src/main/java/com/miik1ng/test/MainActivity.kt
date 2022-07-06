@@ -1,5 +1,6 @@
 package com.miik1ng.test
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -44,9 +45,13 @@ class MainActivity : ComponentActivity() {
                         .setSChecked(false)
                         .addOnButtonClickListener(object :
                             LoginConfig.OnButtonClickListener<MutableMap<String, String?>> {
-                            override fun onClick(t: MutableMap<String, String?>): Boolean {
+                            override fun onClick(
+                                t: MutableMap<String, String?>,
+                                activity: Activity
+                            ): Boolean {
                                 val s: String = "${t["fValue"]},${t["sValue"]}"
                                 Toast.makeText(this@MainActivity, s, Toast.LENGTH_SHORT).show()
+                                activity.finish()
                                 return true
                             }
                         })

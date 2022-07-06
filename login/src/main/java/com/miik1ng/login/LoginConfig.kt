@@ -1,5 +1,6 @@
 package com.miik1ng.login
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -39,13 +40,10 @@ class LoginConfig(builder: Builder) {
     @Suppress("UNCHECKED_CAST")
     private val iCallbackMessenger: ICallback<MutableList<Any>> = object : ICallback<MutableList<Any>> {
         override fun back(t: MutableList<Any>) {
-            val map = t[0] as MutableMap<String, String?>
             if (listener != null) {
-                val b: Boolean = listener.onClick(map)
-                if (b) {
-                    val activity: LoginActivity = t[1] as LoginActivity
-                    activity.finish()
-                }
+                val map = t[0] as MutableMap<String, String?>
+                val activity = t[1] as Activity
+                val b: Boolean = listener.onClick(map, activity)
             }
         }
     }
@@ -181,7 +179,7 @@ class LoginConfig(builder: Builder) {
     }
 
     interface OnButtonClickListener<T> {
-        fun onClick(t: T): Boolean
+        fun onClick(t: T, activity: Activity): Boolean
     }
 
     companion object {
