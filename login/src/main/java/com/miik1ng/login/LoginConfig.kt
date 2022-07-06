@@ -22,17 +22,17 @@ class LoginConfig(builder: Builder) {
         config.logoDrawableRes = builder.logoDrawableRes
         config.fLeadIcon = builder.fLeadIcon
         config.sLeadIcon = builder.sLeadIcon
-        config.fValue = builder.fValue
-        config.sValue = builder.sValue
-        config.fPlaceholder = builder.fPlaceholder
-        config.sPlaceholder = builder.sPlaceholder
+        config.fValue = builder.vFirst
+        config.sValue = builder.vSecond
+        config.fPlaceholder = builder.pFirst
+        config.sPlaceholder = builder.pSecond
         config.showFCheckBox = builder.showFCheckBox
         config.showSCheckBox = builder.showSCheckBox
-        config.fCheckBoxText = builder.fCheckBoxText
-        config.sCheckBoxText = builder.sCheckBoxText
+        config.fCheckBoxText = builder.cbtFirst
+        config.sCheckBoxText = builder.cbtSecond
         config.fChecked = builder.fChecked
         config.sChecked = builder.sChecked
-        config.buttonText = builder.buttonText
+        config.buttonText = builder.btnText
         this.iCallback = builder.iCallback
     }
 
@@ -64,17 +64,17 @@ class LoginConfig(builder: Builder) {
         var logoDrawableRes: Int? = null
         var fLeadIcon: Int? = null
         var sLeadIcon: Int? = null
-        var fValue: String? = null
-        var sValue: String? = null
-        var fPlaceholder: String? = null
-        var sPlaceholder: String? = null
+        var vFirst: String? = null
+        var vSecond: String? = null
+        var pFirst: String? = null
+        var pSecond: String? = null
         var showFCheckBox: Boolean? = null
         var showSCheckBox: Boolean? = null
-        var fCheckBoxText: String? = null
-        var sCheckBoxText: String? = null
+        var cbtFirst: String? = null
+        var cbtSecond: String? = null
         var fChecked: Boolean? = null
         var sChecked: Boolean? = null
-        var buttonText: String? = null
+        var btnText: String? = null
         var iCallback: ICallback<MutableMap<String, String?>>? = null
 
         fun setThemeColor(@ColorInt themeColor: Long): Builder {
@@ -108,22 +108,22 @@ class LoginConfig(builder: Builder) {
         }
 
         fun setFValue(fValue: String): Builder {
-            this.fValue = fValue
+            this.vFirst = fValue
             return this
         }
 
         fun setSValue(sValue: String): Builder {
-            this.sValue = sValue
+            this.vSecond = sValue
             return this
         }
 
         fun setFPlaceholder(fPlaceholder: String): Builder {
-            this.fPlaceholder = fPlaceholder
+            this.pFirst = fPlaceholder
             return this
         }
 
         fun setSPlaceholder(sPlaceholder: String): Builder {
-            this.sPlaceholder = sPlaceholder
+            this.pSecond = sPlaceholder
             return this
         }
 
@@ -138,12 +138,12 @@ class LoginConfig(builder: Builder) {
         }
 
         fun setFCheckBoxText(fCheckBoxText: String): Builder {
-            this.fCheckBoxText = fCheckBoxText
+            this.cbtFirst = fCheckBoxText
             return this
         }
 
         fun setSCheckBoxText(sCheckBoxText: String): Builder {
-            this.sCheckBoxText = sCheckBoxText
+            this.cbtSecond = sCheckBoxText
             return this
         }
 
@@ -158,7 +158,7 @@ class LoginConfig(builder: Builder) {
         }
 
         fun setButtonText(buttonText: String): Builder {
-            this.buttonText = buttonText
+            this.btnText = buttonText
             return this
         }
 
